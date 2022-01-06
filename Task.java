@@ -13,13 +13,15 @@ public class Task   {
     Task(int priority,String explanation){
         this.priority = priority;
         this.explanation = explanation;
-        taskID = 100 + taskCounter;
-        taskCounter++; // increases the counter variable
+        taskID = 100 + taskCounter; //ID starts with 100 and increases even after removing tasks
+        taskCounter++; // increases the counter
     }
-    //static constructor
+
+    //static constructor to skip creating reference
     public static Task createTask(int priority,String explanation){
         return new Task(priority,explanation);
     }
+
     //getter methods
     public int getPriority() {
         return priority;
@@ -33,8 +35,6 @@ public class Task   {
     public int getTaskID() {
         return taskID;
     }
-
-
 
 
     @Override

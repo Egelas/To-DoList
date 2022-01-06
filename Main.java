@@ -8,14 +8,22 @@ public class Main {
     public static void main(String[] args) {
         ToDoList l = new ToDoList();
         Scanner input = new Scanner(System.in);
-        int select, priority;
-        boolean isContinue = true; //flag for while loop
-        String explanation;
+        int select, priority; //to save input
+        boolean isContinue = true; //flag
+        String explanation; ////to save input
+
+        //example tasks added
+        l.addTask(Task.createTask(3,"Submit this assignment to moodle."));
+        l.addTask(Task.createTask(1,"Buy tickets for Amadeus the play."));
+        l.addTask(Task.createTask(1,"Buy tickets for flight to Bodrum."));
+        l.addTask(Task.createTask(1,"Clean your room."));
+        l.addTask(Task.createTask(2,"Make reservation for the weekend."));
 
 
         while(isContinue) {
             System.out.println();
-            System.out.print("ToDo List Operations:\n" +
+            System.out.println();
+            System.out.print("ToDo List Operations:\n" + //menu list for user
                     "1: List tasks.\n" +
                     "2: Add a new task.\n" +
                     "3: Delete a task.\n" +

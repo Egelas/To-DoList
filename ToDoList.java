@@ -6,6 +6,7 @@ import java.util.ArrayList; //imports ArrayList
 public class ToDoList extends Task  {
     //Data Fields
     public static ArrayList<Task> taskList = new ArrayList<Task>();
+    //public static ArrayList<Task> backupTaskList = new ArrayList<Task>(taskList);
 
     //No-arg constructor
     ToDoList() {}
@@ -14,6 +15,7 @@ public class ToDoList extends Task  {
     public static ArrayList<Task> getTaskList() {
         return taskList;
     }
+
 
 
 
@@ -26,7 +28,7 @@ public class ToDoList extends Task  {
 
     //remove
     public void removeTask(int taskID) {
-        int index = findTaskID(taskID); //int index = taskList.indexOf(taskID);
+        int index = findTaskID(taskID); //int index = taskList.indexOf(taskID); //int index = findTaskID(taskID);
         if(index >= 0) {
             taskList.remove(index);
             System.out.println("Task with ID: "+ taskID + " is removed.");
@@ -56,15 +58,21 @@ public class ToDoList extends Task  {
 
 
     //search with keyword and display
-    //search(keyword: String): void
     public void search(String keyword){
-        int index = findTask(keyword); //int index = taskList.indexOf("keyword");
         System.out.println("Search results for the keyword: "+ keyword);
-        if(index >= 0) {
-            System.out.println(taskList.get(index));
+        ArrayList<Task> foundList = new ArrayList<>(); //creating a new ArrayList for found tasks
+        for (Task t : taskList)
+            if (t.getExplanation().contains(keyword)) //adding new tasks to foundList if they contain the keyword
+                foundList.add(t);
+
+        if (foundList.size() > 0) {
+            for (Task t : foundList) { //printing foundList
+                System.out.println(t);
+            }
+            System.out.println("Found " + foundList.size() + " tasks in the To-do List.");
         }
-        else{
-            System.out.println("Found 0 tasks in the To-do List");
+        else{ //when foundList is empty
+            System.out.println("A task contains '"+ keyword +"' is not found in the To-do List!");
         }
     }
 
@@ -73,21 +81,21 @@ public class ToDoList extends Task  {
     //search
     //finds with TaskID
     private int findTaskID(int taskID) { //input integer taskID
-        for(int i=0; i<taskList.size(); i++) {
-            Task t = taskList.get(i);
-            if(t.getTaskID() == taskID) {
-                return i; //return index
-            }
-        }
-        return -1;
-        /*
         for (Task t : taskList){
             if (t.getTaskID() == taskID)
-                return taskList.indexOf(t);
+                return taskList.indexOf(t); //returns index
         }
-         return -1;
+        return -1;
+         /*
+        for(int i=0; i<taskList.size(); i++) {
+            Task t = taskList.get(i);
+            if(t.getTaskID() == taskID)
+                return i; //return index
+        }
+        return -1;
         */
     }
+
 
     //find with keyword
     private int findTask(String keyword){
@@ -95,17 +103,17 @@ public class ToDoList extends Task  {
             Task t = taskList.get(i);
             if(t.getExplanation().contains(keyword)) { //t.getExplanation().equals(keyword) for exact sentence
                 return i; //return integer
-                //buraya degisiklik lazim birden fazla keyword iceren tasklerden ilk cikani gosteriyor sadece
             }
         }
         return -1; //returns integer
     }
 
-
     //find with Task class
     public int findTask(Task t) { //input object
         return taskList.indexOf(t); //returns object's index
     }
+
+/*
     //query Task
     public String queryTask(Task t) { //input object
         if(findTask(t) >=0) {
@@ -124,7 +132,7 @@ public class ToDoList extends Task  {
         return null;
     }
 
-
+*/
 
 
 
@@ -186,4 +194,6 @@ public class ToDoList extends Task  {
 }
 
      */
+
+
 }
