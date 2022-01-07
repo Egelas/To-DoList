@@ -1,11 +1,9 @@
-package Programs2.ToDoListApp;
-
-public class Task   {
+public class Task {
     //Data Fields
-    public static int taskCounter = 0;
-    public int taskID;
-    public int priority;
-    public String explanation;
+    private static int taskCounter = 0;
+    private int taskID;
+    private int priority;
+    private String explanation;
 
     //No-arg constructor
     Task() {}
@@ -13,7 +11,7 @@ public class Task   {
     Task(int priority,String explanation){
         this.priority = priority;
         this.explanation = explanation;
-        taskID = 100 + taskCounter; //ID starts with 100 and increases even after removing tasks
+        taskID = 100 + taskCounter; //ID starts with 100 and do not decrease after removing tasks
         taskCounter++; // increases the counter
     }
 
@@ -23,14 +21,8 @@ public class Task   {
     }
 
     //getter methods
-    public int getPriority() {
-        return priority;
-    }
     public String getExplanation() {
         return explanation;
-    }
-    public static int getTaskCounter() {
-        return taskCounter;
     }
     public int getTaskID() {
         return taskID;
