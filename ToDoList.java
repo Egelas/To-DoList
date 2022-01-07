@@ -62,7 +62,7 @@ public class ToDoList extends Task  {
         System.out.println("Search results for the keyword: "+ keyword);
         ArrayList<Task> foundList = new ArrayList<>(); //creating a new ArrayList for found tasks
         for (Task t : taskList)
-            if (t.getExplanation().contains(keyword)) //adding new tasks to foundList if they contain the keyword
+            if (t.getExplanation().toLowerCase().contains(keyword.toLowerCase())) //adding new tasks to foundList if they contain the keyword
                 foundList.add(t);
 
         if (foundList.size() > 0) {
