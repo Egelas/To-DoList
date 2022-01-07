@@ -1,8 +1,12 @@
-package Programs2.ToDoListApp;
-
+/**
+ * Via numbered menu options, user lists tasks in his/her to-do list, add a new task,
+ * remove a task and search for a keyword in task descriptions.
+ *
+ *
+ * @author Ege Pekgenc,
+ * @since Date: 07.01.2022
+ */
 import java.util.Scanner;
-
-
 
 public class Main {
     public static void main(String[] args) {
@@ -18,10 +22,10 @@ public class Main {
         l.addTask(Task.createTask(1,"Buy tickets for flight to Bodrum."));
         l.addTask(Task.createTask(1,"Clean your room."));
         l.addTask(Task.createTask(2,"Make reservation for the weekend."));
+        l.addTask(Task.createTask(2,"Do fitness training."));
 
 
         while(isContinue) {
-            System.out.println();
             System.out.println();
             System.out.print("ToDo List Operations:\n" + //menu list for user
                     "1: List tasks.\n" +
@@ -43,6 +47,8 @@ public class Main {
                 case 1: //show all tasks
                     System.out.println();
                     l.listTasks();
+                    System.out.println();
+                    System.out.println();
                     break;
 
                 case 2: //add a new task
@@ -50,11 +56,13 @@ public class Main {
                     System.out.print("Add a new task:\nEnter task priority (1: Low, 2: Medium, 3:High): ");
                     priority = input.nextInt();
                     System.out.print("Enter task description: ");
-                    input.nextLine(); //explanation = input.nextLine();
+                    input.nextLine();
                     explanation = input.nextLine();
                     Task newTask = Task.createTask(priority,explanation);
                     l.addTask(newTask);
                     System.out.println("Task added to the To-do List.");
+                    System.out.println();
+                    System.out.println();
                     break;
 
                 case 3: //delete a task
@@ -62,6 +70,8 @@ public class Main {
                     System.out.print("Delete a task:\nEnter a Task ID to be deleted: ");
                     int iD = input.nextInt();
                     l.removeTask(iD);
+                    System.out.println();
+                    System.out.println();
                     break;
 
                 case 4: //search from tasks
@@ -69,106 +79,16 @@ public class Main {
                     System.out.print("Enter the search keyword: ");
                     String word = input.nextLine();
                     l.search(word);
+                    System.out.println();
+                    System.out.println();
                     break;
 
                 default:
                     System.out.println();
                     System.out.print("Your selection must be 1, 2, 3, 4 or 0!");
-
-
-            }
-        }
-
-
-
-
+                    System.out.println();
+            }//end of switch
+        }//end of while
 
     }
 }
-
-
-
-/*
-import java.util.ArrayList;
-import java.util.Scanner;
-
-public class Task {
-	private String description;
-	private String dueDate;
-
-	public Task(String descrip, String due){
-		this.description = descrip;
-		this.dueDate = due;
-	}
-
-
-
-
-
-	public static void main(String[] args) {
-		String Date, whatToDo;
-		String userChoiceStr, removeTaskStr;
-		int userChoice, removeTask;
-		ArrayList<Task> taskList = new ArrayList<Task>();
-        Scanner user_input = new Scanner(System.in);
-
-
-
-
-
-        do
-        {
-        	System.out.print("What would you like to do?\n");
-        	System.out.print("1. Add task\n");
-        	System.out.print("2. View all tasks\n");
-        	System.out.print("3. Remove task\n");
-        	System.out.print("4. Terminate\n");
-
-        	userChoiceStr = user_input.nextLine();
-        	userChoice = Integer.parseInt(userChoiceStr);
-
-
-        	switch(userChoice){
-        	case 1:
-        		System.out.println("When is it due?");
-        		Date = user_input.nextLine();
-        		System.out.println("What do you have to do?");
-        		whatToDo = user_input.nextLine();
-        		taskList.add(new Task(whatToDo, Date));
-        		System.out.println("Okay, Its been added to the list!\n");
-        		break;
-
-        	case 2:
-        		for(Task task : taskList){
-        			System.out.println("Due on:" + task.dueDate);
-        			System.out.println("To Do:" + task.description);
-        			System.out.println("\n");
-        			}
-        		break;
-
-        	case 3:
-        		System.out.println("Enter the task number you want to remove.\n");
-        		removeTaskStr = user_input.nextLine();
-        		removeTask = Integer.parseInt(removeTaskStr);
-        		taskList.remove((removeTask-1));
-        		System.out.println("Ok it's been removed!");
-        		break;
-
-        	case 4:
-        		userChoice = -1;
-        		user_input.close();
-        		break;
-
-        	default:
-        		System.out.println("Invalid input! Try again");
-        		break;
-        		}
-
-        }
-        while(userChoice != -1);
-
-	}
-
-
-}
- */
