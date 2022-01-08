@@ -27,66 +27,65 @@ public class Main {
 
         while(isContinue) {
             System.out.println();
-            System.out.print("ToDo List Operations:\n" + //menu list for user
-                    "1: List tasks.\n" +
-                    "2: Add a new task.\n" +
-                    "3: Delete a task.\n" +
-                    "4: Search tasks.\n" +
-                    "0: Exit.\n" +
-                    "Please enter your choice: ");
+            //menu list for user
+            //used text block
+            System.out.print(""" 
+                    ToDo List Operations:
+                    1: List tasks.
+                    2: Add a new task.
+                    3: Delete a task.
+                    4: Search tasks.
+                    0: Exit.
+                    Please enter your choice:\s"""); 
             select = input.nextInt();
             input.nextLine();
 
-            switch (select){
-                case 0: //exit
+            switch (select) { //enhanced switch
+                case 0 -> { //exit
                     System.out.println();
                     System.out.println("Bye.");
                     isContinue = false;
-                    break;
-
-                case 1: //show all tasks
+                }
+                case 1 -> { //show all tasks
                     System.out.println();
                     l.listTasks();
                     System.out.println();
                     System.out.println();
-                    break;
-
-                case 2: //add a new task
+                }
+                case 2 -> { //add a new task
                     System.out.println();
                     System.out.print("Add a new task:\nEnter task priority (1: Low, 2: Medium, 3:High): ");
                     priority = input.nextInt();
                     System.out.print("Enter task description: ");
                     input.nextLine();
                     explanation = input.nextLine();
-                    Task newTask = Task.createTask(priority,explanation);
+                    Task newTask = Task.createTask(priority, explanation);
                     l.addTask(newTask);
                     System.out.println("Task added to the To-do List.");
                     System.out.println();
                     System.out.println();
-                    break;
-
-                case 3: //delete a task
+                }
+                case 3 -> { //delete a task
                     System.out.println();
                     System.out.print("Delete a task:\nEnter a Task ID to be deleted: ");
                     int iD = input.nextInt();
                     l.removeTask(iD);
                     System.out.println();
                     System.out.println();
-                    break;
-
-                case 4: //search from tasks
+                }
+                case 4 -> { //search from tasks
                     System.out.println();
                     System.out.print("Enter the search keyword: ");
                     String word = input.nextLine();
                     l.search(word);
                     System.out.println();
                     System.out.println();
-                    break;
-
-                default:
+                }
+                default -> {
                     System.out.println();
                     System.out.print("Your selection must be 1, 2, 3, 4 or 0!");
                     System.out.println();
+                }
             }//end of switch
         }//end of while
 
